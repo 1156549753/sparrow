@@ -2,9 +2,10 @@
 	"scripts": {
 		"eslint:fix": "npx eslint src/**/*.js",
 		"test": "jest --coverage",
-		"build": "rimraf -rf ./dist ./lib ./esm && rollup --config",
+		"build": "rimraf -rf ./dist ./lib ./esm && rollup --config --bundleConfigAsCjs",
 		"test-live": "cross-env DEBUG_MODE=1 jest --coverage",
-		"lint": "eslint ./*.js --fix"
+		"lint": "eslint src/**/*.js --fix",
+		"ci": "run-s  test build"
 	},
 	"lint-staged": {
 		"*.js": "eslint --cache --fix"
@@ -21,9 +22,13 @@
 		"eslint-plugin-import": "^2.29.0",
 		"jest": "26.0.1",
 		"jest-electron": "^0.1.12",
+		"lint-staged": "^15.0.2",
+		"npm-run-all": "^4.1.5",
 		"prettier": "^3.0.3",
 		"rimraf": "^5.0.5",
-		"rollup": "^4.1.4",
+		"rollup": "^4.1.4"
+	},
+	"dependencies": {
 		"rollup-plugin-babel": "^4.4.0",
 		"rollup-plugin-node-resolve": "^5.2.0"
 	}
